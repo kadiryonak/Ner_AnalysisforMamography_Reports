@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 
-# NER Modeli tanımlama
+# NER Model identification
 class NERModel(nn.Module):
     def __init__(self, vocab_size, tagset_size, embedding_dim, hidden_dim):
         super(NERModel, self).__init__()
