@@ -1,4 +1,4 @@
-
+import torch
 # Save Model and Ner Analysis
 def save_model(model, path="ner_model.pth"):
     torch.save(model.state_dict(), path)
