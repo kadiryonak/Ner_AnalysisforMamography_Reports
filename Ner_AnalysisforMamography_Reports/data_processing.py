@@ -1,6 +1,6 @@
 import json
 
-# Veriyi yükleme fonksiyonu
+# Load Data
 def load_data(file_paths):
     reports = []
     labels = []
@@ -12,7 +12,7 @@ def load_data(file_paths):
                 labels.append(data['label'])
     return reports, labels
 
-# BIO formatına dönüştürme fonksiyonu
+# Convert to BIO format
 def tokenize_with_positions(text):
     words = []
     current_pos = 0
@@ -40,7 +40,7 @@ def convert_to_bio(reports, labels):
         bio_data.append((report, bio_tags))
     return bio_data
 
-# Vocab oluşturma fonksiyonları
+# Vocab creation functions
 def build_vocab(sentences):
     word_to_ix = {}
     for sentence in sentences:
