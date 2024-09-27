@@ -2,7 +2,7 @@ from torch.utils.data import DataLoader
 from dataset import NERDataset, collate_fn
 from training import train_and_evaluate_model_with_mixed_precision
 
-# Curriculum Learning zorluk seviyesine göre veriyi bölme
+# Split data according to Curriculum Learning difficulty level
 def difficulty_level(report):
     return len(report.split())
 
@@ -17,7 +17,7 @@ def split_data_by_difficulty(bio_data):
     
     return easy_data, medium_data, hard_data
 
-# Curriculum Learning ile model eğitimi
+# Model training with Curriculum Learning
 def train_model_with_curriculum_learning(model, easy_data, medium_data, hard_data, word_to_ix, tag_to_ix, optimizer, epochs=3150):
     for stage, data in enumerate([easy_data, medium_data, hard_data]):
         print(f"Curriculum Learning Stage {stage + 1}")
