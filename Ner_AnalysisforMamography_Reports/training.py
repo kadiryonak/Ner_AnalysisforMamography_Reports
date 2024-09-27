@@ -4,7 +4,7 @@ from torch.cuda.amp import autocast, GradScaler
 from sklearn.metrics import f1_score
 import matplotlib.pyplot as plt
 
-# Mixed precision eğitim ve değerlendirme fonksiyonu
+# Mixed precision training and evaluation function
 def train_and_evaluate_model_with_mixed_precision(model, data_loader, optimizer, tag_to_ix, epochs=3150):
     model.train()
     loss_function = nn.CrossEntropyLoss(ignore_index=tag_to_ix["<PAD>"])
@@ -47,7 +47,7 @@ def train_and_evaluate_model_with_mixed_precision(model, data_loader, optimizer,
 
         print(f"Epoch {epoch + 1}/{epochs}, Loss: {avg_loss:.4f}, F1 Score: {f1:.4f}")
 
-    # Eğitim tamamlandıktan sonra F1 skorlarını grafikte göster
+    # Show F1 scores on a graph after training is complete 
     plt.figure(figsize=(10, 5))
     plt.plot(range(1, epochs + 1), f1_scores, label="F1 Score", color='b')
     plt.title("F1 Score per Epoch")
