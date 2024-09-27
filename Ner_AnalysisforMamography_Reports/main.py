@@ -8,10 +8,10 @@ from training import save_model
 if __name__ == "__main__":
     # Veriyi Yükleme
     file_paths = [
-        r"C:\Users\Batuhan Koyuncu\Desktop\TEKNOFEST\Karışık\1\all.jsonl",
-        r"C:\Users\Batuhan Koyuncu\Desktop\TEKNOFEST\Karışık\2\all.jsonl",
-        r"C:\Users\Batuhan Koyuncu\Desktop\TEKNOFEST\Karışık\3\all.jsonl",
-        r"C:\Users\Batuhan Koyuncu\Desktop\TEKNOFEST\Karışık\4\all.jsonl"
+        "dataset_path1",
+        "dataset_path2",
+        "dataset_path3",
+        "dataset_path4"
     ]
     
     reports, labels = load_data(file_paths)
@@ -26,7 +26,7 @@ if __name__ == "__main__":
     word_to_ix["<PAD>"] = len(word_to_ix)
     tag_to_ix["<PAD>"] = len(tag_to_ix)
 
-    # Modeli Tanımlama ve Optimizasyon
+    # Model Identification and Optimization
     embedding_dim = 128
     hidden_dim = 64
     model = NERModel(len(word_to_ix), len(tag_to_ix), embedding_dim, hidden_dim)
@@ -38,9 +38,9 @@ if __name__ == "__main__":
         {'params': model.hidden2tag.parameters(), 'lr': 1e-3}
     ])
     
-    # Curriculum Learning ile Eğitim
+    # Curriculum Learning with training
     easy_data, medium_data, hard_data = split_data_by_difficulty(bio_data)
     train_model_with_curriculum_learning(model, easy_data, medium_data, hard_data, word_to_ix, tag_to_ix, optimizer, epochs=3150)
     
-    # Modeli Kaydet
+    # Save Model
     save_model(model, "ner_model.pth")
